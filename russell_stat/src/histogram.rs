@@ -1,30 +1,22 @@
 #[derive(Debug)]
-pub struct Histogram<T>
+pub struct Histogram<'a, T>
 where
     T: Into<f64> + Copy,
 {
-    stations: Vec<T>,
-    counts: Vec<i32>,
+    stations: &'a [T],
+    counts: Vec<usize>,
 }
 
-impl<T> Histogram<T>
+impl<'a, T> Histogram<'a, T>
 where
     T: Into<f64> + Copy,
 {
-    pub fn new(stations: &[T]) -> Self {
+    pub fn new(stations: &'a [T]) -> Self {
         Histogram {
-            stations: Vec::from(stations),
+            stations,
             counts: Vec::new(),
         }
     }
-
-    /*
-    pub fn new(first_station: T, last_station_plus_one: T) -> Self {
-        Histogram{
-            stations: Vec
-        }
-    }
-    */
 }
 
 ///////////////////////////////////////////////////////////////////////////////
